@@ -2,18 +2,6 @@ var express = require('express');
 var router = express.Router();
 const https = require('https');
 
-function requestCityData(cityName) {
-  return new Promise((resolve, reject) => {
-    https.get(`https://geocode.xyz/${cityName.replace(/ /g, '+')}?json=1`, (res) => {
-      res.on('data', (buffer) => {
-        resolve(JSON.parse(buffer.toString('utf8')));
-      });  
-    }).on('error', (e) => {
-      reject(e);
-    });
-  });
-}
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Node App' });
